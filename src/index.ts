@@ -4,29 +4,32 @@ import { authenticateToken } from "./JWT"
 import dotenv from "dotenv"
 
 interface OwO {
-    id: string
+    id: number
+    data: any
 }
 
 const app = Express()
 dotenv.config()
 
-const owo = new Database<OwO>("./data/test.json");
+const owo = new Database<OwO>("./data/OwO.json");
 
-app.listen(3000, ()=>{
-    console.log('Running on port 3000')
+app.listen(process.env.PORT || 3000, () => {
+    console.log(`Running on port ${process.env.PORT}!`)
 })  
 
 app.use(Express.json())
 
-app.get('/api/protected', authenticateToken, (req, res) => {
-    res.send('It works!')
+app.use(Express.static('public'))
+
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/public/home.html')
 })
 
-app.get('/api/owo', async (req, res) => {
+app.get('/api/owo', authenticateToken, async (req, res) => {
     res.send(await owo.findMany())
 })
 
-app.post('/api/owo', async (req, res) => {
+app.post('/api/owo', authenticateToken, async (req, res) => {
     const body = await req.body;
     if (!body) {
         res.status(400)
@@ -38,19 +41,30 @@ app.post('/api/owo', async (req, res) => {
         res.send('UwU Bad Request')
         return
     }
-    owo.insertOne(body)
+    if (!body.data) {
+        res.status(400)
+        res.send('UwU Bad Request')
+        return
+    }
+    if (body.id && typeof body.id == "string") {
+    owo.insertOne({ id: body.id, data: body.data })
     res.status(200)
-    res.send(body)
+    res.send({ id: body.id, data: body.data })
+    return
+    }
+    res.status(400)
+    res.send('UwU Bad Request')
+    return
 })
 
-app.get('/api/owo/:id', async (req, res) => {
+app.get('/api/owo/:id', authenticateToken, async (req, res) => {
     const id = req.params.id
     const data = await owo.findOne({ id: id })
 
     res.send(data)
 })
 
-app.delete("/api/owo/:id", async (req, res) => {
+app.delete("/api/owo/:id", authenticateToken, async (req, res) => {
     const id = req.params.id;
     const exist = await owo.findOne({ id: id })
 
