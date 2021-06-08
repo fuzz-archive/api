@@ -4,7 +4,7 @@ import dotenv from "dotenv"
 dotenv.config()
 
 export function generateAccessToken(username: string) {
-    return JWT.sign(username, process.env.JWT_SECRET, { expiresIn: '1800s' });
+    return JWT.sign(username, process.env.JWT_SECRET, { expiresIn: '24h' });
 }
 
 export function authenticateToken(req, res, next) {

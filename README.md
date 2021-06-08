@@ -9,4 +9,4 @@ Pretty simple:
 * Now run: node .
 
 # Usage
-You can make a token from genToken.js
+You can make a token from genToken.js in the dist folder after building the files

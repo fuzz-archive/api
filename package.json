@@ -1,14 +1,13 @@
 {
-  "name": "apiserv",
+  "name": "uwuapi",
   "version": "1.0.0",
-  "description": "",
+  "description": "Just an API server",
   "main": "dist/index",
   "scripts": {
     "build": "tsc -p ./",
     "start": "node dist/index"
   },
-  "keywords": [],
-  "author": "",
+  "author": "ArtieFuzzz (https://artiefuzzz.is-a.dev)",
   "license": "ISC",
   "dependencies": {
     "aloedb-node": "^1.0.2",
