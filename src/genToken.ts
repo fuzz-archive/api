@@ -7,4 +7,4 @@
 
 import { generateAccessToken } from './JWT'
 
-console.log(generateAccessToken('Username here! or whatever'))
+console.log(generateAccessToken({ username: 'Username here' }))

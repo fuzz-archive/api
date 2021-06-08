@@ -1,7 +1,7 @@
 import Express, { Request, Response, NextFunction } from "express"
 import { Database } from "aloedb-node"
 import { authenticateToken } from "./JWT"
-import ImageModel from "./Models/Image"
+import MemeModel from "./Models/Meme"
 import mongoose from "mongoose"
 import dotenv from "dotenv"
 import helmet from "helmet"
@@ -49,25 +49,25 @@ app.get('/', (_req: Request, res: Response) => {
     res.status(200).send({ code: 200, message: 'hello!', error: false})
 })
 
-app.get('/api/images', authenticateToken, async (_req: Request, res: Response) => {
-    const count = await ImageModel.countDocuments()
+app.get('/api/images/memes', authenticateToken, async (_req: Request, res: Response) => {
+    const count = await MemeModel.countDocuments()
     const random = Math.floor(Math.random() * count)
 
-    const found = await ImageModel.findOne().skip(random)
+    const found = await MemeModel.findOne().skip(random)
     res.send(found)
 })
 
-app.delete("/api/images/:id", authenticateToken, async (req: Request, res: Response) => {
+app.delete("/api/images/memes/:id", authenticateToken, async (req: Request, res: Response) => {
     const id = req.params.id;
-    const exist = await ImageModel.findOne({ _id: id })
+    const exist = await MemeModel.findOne({ _id: id })
 
     if (exist) {
-        await ImageModel.deleteOne({ _id: id })
+        await MemeModel.deleteOne({ _id: id })
         res.status(200).send({ code: 200, message: "^w^ Deleted successfully", error: false})
     }
 })
 
-app.post('/api/images', authenticateToken, async (req: Request, res: Response) => {
+app.post('/api/images/memes', authenticateToken, async (req: Request, res: Response) => {
     const body = await req.body;
     if (!body) {
         res.status(400)
@@ -75,8 +75,8 @@ app.post('/api/images', authenticateToken, async (req: Request, res: Response) =
         return
     }
     if (body.url && typeof body.url === 'string') {
-        const count  =  await ImageModel.countDocuments()
-        const Image = new ImageModel({ _id: count + 1, url: body.url })
+        const count  =  await MemeModel.countDocuments()
+        const Image = new MemeModel({ _id: count + 1, url: body.url })
         Image.save()
         res.status(200)
         res.send({ _id: count + 1, url: body.url })
