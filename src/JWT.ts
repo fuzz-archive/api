@@ -1,13 +1,14 @@
 import JWT from "jsonwebtoken"
+import { Request, Response, NextFunction } from "express"
 import dotenv from "dotenv"
 
 dotenv.config()
 
 export function generateAccessToken(username: string) {
-    return JWT.sign(username, process.env.JWT_SECRET, { expiresIn: '24h' });
+    return JWT.sign(username, process.env.JWT_SECRET, { expiresIn: '7200s' });
 }
 
-export function authenticateToken(req, res, next) {
+export function authenticateToken(req: Request, res: Response, next: NextFunction) {
     const authHeader = req.headers['authorization']
     const token = authHeader && authHeader.split(' ')[1]
   
@@ -20,8 +21,6 @@ export function authenticateToken(req, res, next) {
     if (err) {
         return res.sendStatus(403).send({ code: 403, message: 'UwU Forbidden', error: false })
     }
-  
-      req.user = user
   
       next()
     })

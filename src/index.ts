@@ -1,4 +1,4 @@
-import Express, { Request, Response } from "express"
+import Express, { Request, Response, NextFunction } from "express"
 import { Database } from "aloedb-node"
 import { authenticateToken } from "./JWT"
 import ImageModel from "./Models/Image"
@@ -144,6 +144,6 @@ app.use(function(_req: Request, res: Response) {
     res.status(404).send({ code: 404, message: "UwU Not found", error: false })
 });
 
-app.use(function(_error, _req: Request, res: Response, _next) {
+app.use(function(_error, _req: Request, res: Response, _next: NextFunction) {
     res.status(500).send({ code: 500, message: "QwQ Internal Server Error", error: true })
 });
