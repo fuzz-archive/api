@@ -4,7 +4,8 @@
   "description": "",
   "main": "dist/index",
   "scripts": {
-    "build": "tsc -p ./"
+    "build": "tsc -p ./",
+    "start": "node dist/index"
   },
   "keywords": [],
   "author": "",
@@ -13,9 +14,10 @@
     "aloedb-node": "^1.0.2",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "express-mongo-sanitize": "^2.1.0",
+    "helmet": "^4.6.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.12.13",
-    "swagger-ui-express": "^4.1.6"
+    "mongoose": "^5.12.13"
   },
   "devDependencies": {
     "@types/express": "^4.17.12",
