@@ -74,6 +74,10 @@ const router = Router()
 			res.send({ code: 400, message: 'UwU Bad Request', error: false })
 			return
 		}
+		if (!body.nsfw) {
+			res.status(400)
+			res.send({ code: 400, message: 'UwU Bad Request', error: false })
+		}
 		if (body.url && typeof body.url === 'string') {
 			const count = await RandomImageSchema.countDocuments()
 			const Image = new RandomImageSchema({ _id: count + 1, url: body.url })
