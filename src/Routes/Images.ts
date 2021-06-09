@@ -1,7 +1,20 @@
 import { authenticateToken } from '../Middleware/JWT'
 import { Router, Request, Response } from 'express'
+import mongoose from 'mongoose'
 import MemeSchema from '../Models/Meme'
 import RandomImageSchema from '../Models/RandomImage'
+
+mongoose.connect(process.env.MONGO_URI.toString(), {
+	useNewUrlParser: true,
+	useUnifiedTopology: true,
+	useFindAndModify: false,
+	useCreateIndex: true
+}).then(() => {
+	console.log('Connected to MongoDB!')
+}).catch((err) => {
+	console.log('Failed to connect to MongoDB...')
+	console.error(err)
+})
 
 const router = Router()
 	.get('/api/images/memes', authenticateToken, async (_req: Request, res: Response) => {
@@ -13,9 +26,12 @@ const router = Router()
 	})
 	.get('/api/images/random', authenticateToken, async (_req: Request, res: Response) => {
 		const count = await RandomImageSchema.countDocuments()
+		console.log(count)
 		const random = Math.floor(Math.random() * count)
+		console.log(random)
 
-		const found = await MemeSchema.findOne().skip(random)
+		const found = await RandomImageSchema.findOne()
+		console.log(found)
 		res.status(200).send(found)
 	})
 	.delete('/api/images/memes/:id', authenticateToken, async (req: Request, res: Response) => {
@@ -32,7 +48,7 @@ const router = Router()
 		const exist = await RandomImageSchema.findOne({ _id: id })
 
 		if (exist) {
-			await MemeSchema.deleteOne({ _id: id })
+			await RandomImageSchema.deleteOne({ _id: id })
 			res.status(200).send({ code: 200, message: '^w^ Deleted successfully', error: false })
 		}
 	})

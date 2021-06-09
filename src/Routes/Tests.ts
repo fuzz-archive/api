@@ -10,5 +10,9 @@ const router = Router()
 		res.status(200).json(query)
 		console.log(query)
 	})
+	.get('/api/tests/gzip', async (req: Request, res: Response) => {
+		const word = 'Hewwo!'
+		res.status(200).send(word.repeat(500))
+	})
 
 export = router
