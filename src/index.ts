@@ -3,6 +3,7 @@ import compression from 'compression'
 import dotenv from 'dotenv'
 import helmet from 'helmet'
 import mongoSanitize from 'express-mongo-sanitize'
+import hpp from 'hpp'
 import ImageRoutes from './Routes/Images'
 import TestRoutes from './Routes/Tests'
 
@@ -32,6 +33,7 @@ app.use(TestRoutes)
 
 // Security
 app.disable('x-powered-by')
+app.use(hpp())
 app.use(mongoSanitize())
 app.use(helmet())
 
