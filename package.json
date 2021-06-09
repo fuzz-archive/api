@@ -5,10 +5,12 @@
   "main": "dist/index",
   "scripts": {
     "build": "tsc -p ./",
-    "start": "node dist/index"
+    "start": "node dist/index",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "author": "ArtieFuzzz (https://artiefuzzz.is-a.dev)",
-  "license": "ISC",
+  "license": "BSD-3-Clause",
   "dependencies": {
     "compression": "^1.7.4",
     "dotenv": "^10.0.0",
