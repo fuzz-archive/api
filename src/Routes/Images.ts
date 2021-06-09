@@ -26,12 +26,9 @@ const router = Router()
 	})
 	.get('/api/images/random', authenticateToken, async (_req: Request, res: Response) => {
 		const count = await RandomImageSchema.countDocuments()
-		console.log(count)
 		const random = Math.floor(Math.random() * count)
-		console.log(random)
 
-		const found = await RandomImageSchema.findOne()
-		console.log(found)
+		const found = await RandomImageSchema.findOne().skip(random)
 		res.status(200).send(found)
 	})
 	.delete('/api/images/memes/:id', authenticateToken, async (req: Request, res: Response) => {
