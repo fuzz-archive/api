@@ -71,12 +71,12 @@ const router = Router()
 		const body = await req.body
 		if (!body) {
 			res.status(400)
-			res.send({ code: 400, message: 'UwU Bad Request', error: false })
+			res.send({ code: 400, message: 'UwU Bad Request [No body provided]', error: false })
 			return
 		}
 		if (!body.nsfw) {
 			res.status(400)
-			res.send({ code: 400, message: 'UwU Bad Request', error: false })
+			res.send({ code: 400, message: 'UwU Bad Request []', error: false })
 		}
 		if (body.url && typeof body.url === 'string') {
 			const count = await RandomImageSchema.countDocuments()
