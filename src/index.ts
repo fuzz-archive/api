@@ -5,6 +5,7 @@ import dotenv from 'dotenv'
 import helmet from 'helmet'
 import mongoSanitize from 'express-mongo-sanitize'
 import ImageRoutes from './Routes/Images'
+import TestRoutes from './Routes/Tests'
 
 const app = Express()
 dotenv.config()
@@ -40,6 +41,7 @@ app.use(compression({ level: 1 }))
 
 // Routes / Endpoints
 app.use(ImageRoutes)
+app.use(TestRoutes)
 
 // Security
 app.disable('x-powered-by')
