@@ -2,7 +2,7 @@
   "name": "uwuapi",
   "version": "1.0.0",
   "description": "Just an API server",
-  "main": "dist/index",
+  "main": "dist/src/index",
   "scripts": {
     "build": "tsc -p ./",
     "start": "node dist/index",
@@ -12,6 +12,7 @@
   "author": "ArtieFuzzz (https://artiefuzzz.is-a.dev)",
   "license": "BSD-3-Clause",
   "dependencies": {
+    "centra": "^2.4.2",
     "compression": "^1.7.4",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
