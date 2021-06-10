@@ -20,6 +20,7 @@
     "rules": {
       "no-console": 0,
       "no-undef": 1,
+			"camelcase": 0,
       "@typescript-eslint/explicit-function-return-type": 0,
       "@typescript-eslint/restrict-template-expressions": 1,
       "@typescript-eslint/no-unsafe-assignment": 0,
@@ -29,4 +30,3 @@
 		  "no-tabs": 0
     }
   }
-  

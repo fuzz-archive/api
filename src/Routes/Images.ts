@@ -3,8 +3,10 @@ import { Router, Request, Response } from 'express'
 import mongoose from 'mongoose'
 import MemeSchema from '../Models/Meme'
 import RandomImageSchema from '../Models/RandomImage'
+import { Fetch as FetchSubreddit } from '../Util/Reddit'
+// import { FetchSubreddit } from 'reddit.images'
 
-mongoose.connect(process.env.MONGO_URI.toString(), {
+mongoose.connect(process.env.MONGO_URI, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
 	useFindAndModify: false,
@@ -17,6 +19,11 @@ mongoose.connect(process.env.MONGO_URI.toString(), {
 })
 
 const router = Router()
+	.get('/api/images/reddit/:subreddit', authenticateToken, async (req: Request, res: Response) => {
+		const subreddit = req.params.subreddit
+		const subdata = await FetchSubreddit(subreddit)
+		res.status(200).send(subdata)
+	})
 	.get('/api/images/memes', authenticateToken, async (_req: Request, res: Response) => {
 		const count = await MemeSchema.countDocuments()
 		const random = Math.floor(Math.random() * count)
@@ -73,10 +80,6 @@ const router = Router()
 			res.status(400)
 			res.send({ code: 400, message: 'UwU Bad Request [No body provided]', error: false })
 			return
-		}
-		if (!body.nsfw) {
-			res.status(400)
-			res.send({ code: 400, message: 'UwU Bad Request []', error: false })
 		}
 		if (body.url && typeof body.url === 'string') {
 			const count = await RandomImageSchema.countDocuments()
