@@ -19,7 +19,8 @@
     "helmet": "^4.6.0",
     "hpp": "^0.2.3",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.12.13"
+    "mongoose": "^5.12.13",
+    "reddit.images": "^1.0.0"
   },
   "devDependencies": {
     "@tmware/eslint-config-typescript": "^1.0.7",

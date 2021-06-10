@@ -3,6 +3,7 @@ import { Router, Request, Response } from 'express'
 import mongoose from 'mongoose'
 import MemeSchema from '../Models/Meme'
 import RandomImageSchema from '../Models/RandomImage'
+import { FetchSubreddit } from 'reddit.images'
 
 mongoose.connect(process.env.MONGO_URI.toString(), {
 	useNewUrlParser: true,
@@ -17,6 +18,10 @@ mongoose.connect(process.env.MONGO_URI.toString(), {
 })
 
 const router = Router()
+	.get('/api/images/reddit/:subreddit', async (req, res) => {
+		const data = await FetchSubreddit(req.params.subreddit)
+		res.send(data)
+	})
 	.get('/api/images/memes', authenticateToken, async (_req: Request, res: Response) => {
 		const count = await MemeSchema.countDocuments()
 		const random = Math.floor(Math.random() * count)
@@ -73,10 +78,6 @@ const router = Router()
 			res.status(400)
 			res.send({ code: 400, message: 'UwU Bad Request [No body provided]', error: false })
 			return
-		}
-		if (!body.nsfw) {
-			res.status(400)
-			res.send({ code: 400, message: 'UwU Bad Request []', error: false })
 		}
 		if (body.url && typeof body.url === 'string') {
 			const count = await RandomImageSchema.countDocuments()
