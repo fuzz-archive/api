@@ -63,8 +63,8 @@ const router = Router()
     }
     if (body.url && typeof body.url === 'string') {
       const count = await MemeSchema.countDocuments()
-      await new MemeSchema({ _id: count + 1, url: body.url }).save()
-      return res.status(200).send({ _id: count + 1, url: body.url })
+      const Image = await new MemeSchema({ id: count + 1, url: body.url }).save()
+      return res.status(200).send({ id: Image.id, url: body.url })
     }
     return res.status(400).send({ code: 400, message: 'UwU Bad Request', error: false })
   })
@@ -76,8 +76,8 @@ const router = Router()
     }
     if (body.url && typeof body.url === 'string') {
       const count = await RandomImageSchema.countDocuments()
-      await new RandomImageSchema({ _id: count + 1, url: body.url }).save()
-      return res.status(200).send({ _id: count + 1, url: body.url })
+      const Image = await new RandomImageSchema({ id: count + 1, url: body.url }).save()
+      return res.status(200).send({ id: Image.id, url: body.url })
     }
     res.status(400)
     return res.send({ code: 400, message: 'UwU Bad Request', error: false })
