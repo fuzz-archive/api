@@ -1,0 +1,12 @@
+{
+  "extends": "@astriel-division/ts-config/src/tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../build",
+    "rootDir": ".",
+    "baseUrl": ".",
+    "strictNullChecks": false,
+    "resolveJsonModule": true
+  },
+  "include": ["."],
+  "exclude": ["tsconfig.json"]
+}
