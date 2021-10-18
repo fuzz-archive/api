@@ -25,7 +25,7 @@
     "mongoose": "^6.0.0"
   },
   "devDependencies": {
-    "@astriel-division/eslint-config": "1.1.6",
+    "@astriel-division/eslint-config": "1.2.0",
     "@astriel-division/ts-config": "1.0.5",
     "@types/centra": "2.2.0",
     "@types/compression": "1.7.2",
