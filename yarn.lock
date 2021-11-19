@@ -22,13 +22,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@astriel-division/ts-config@npm:1.0.5":
-  version: 1.0.5
-  resolution: "@astriel-division/ts-config@npm:1.0.5"
+"@astriel-division/ts-config@npm:1.0.7":
+  version: 1.0.7
+  resolution: "@astriel-division/ts-config@npm:1.0.7"
   dependencies:
     tslib: 2.3.1
-    typescript: 4.4.2
-  checksum: 4818a196e84bf4cb4f97b966c58b0e66ccd8732748b8ed5828d77022b9ddea038cb55b9f23c82e86699c5b422d1c13bba61f9dfbbf3ff0915ae7ed12f46c5fe7
+    typescript: 4.4.4
+  checksum: b125fbc1c225dd3dcc795d9c9a0d4da17b29b595632b5401382a69a5c389e5ab2d106bfed2b03bf8817a665d44dfe5c08c6047cb9750c6f9445b23d545b0a51f
   languageName: node
   linkType: hard
 
@@ -2495,7 +2495,7 @@ __metadata:
   resolution: "ovoapi@workspace:."
   dependencies:
     "@astriel-division/eslint-config": 1.2.0
-    "@astriel-division/ts-config": 1.0.5
+    "@astriel-division/ts-config": 1.0.7
     "@types/centra": 2.2.0
     "@types/compression": 1.7.2
     "@types/express": 4.17.13
@@ -3210,16 +3210,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-typescript@4.4.2:
-  version: 4.4.2
-  resolution: "typescript@npm:4.4.2"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 194e08e9d1971d667d6fd1a0554616b7022312a2319d70e81a64e502a265992061ee7817ed9a69b52bbabe7a9b85e7938cb8c11c433e40a516b277f8c4dacd51
-  languageName: node
-  linkType: hard
-
 typescript@4.4.4:
   version: 4.4.4
   resolution: "typescript@npm:4.4.4"
@@ -3227,16 +3217,6 @@ typescript@4.4.4:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 89ecb8436bb48ef5594d49289f5f89103071716b6e4844278f4fb3362856e31203e187a9c76d205c3f0b674d221a058fd28310dbcbcf5d95e9a57229bb5203f1
-  languageName: node
-  linkType: hard
-
-"typescript@patch:typescript@4.4.2#~builtin<compat/typescript>":
-  version: 4.4.2
-  resolution: "typescript@patch:typescript@npm%3A4.4.2#~builtin<compat/typescript>::version=4.4.2&hash=32657b"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 3109ae25705746996007161cdd3271857db4f40356b894e34d4cabc216bf9e251f53e0bb6e48df2450b5e3fd948dcbee716a616a4ad4cf7251292025e6163cb1
   languageName: node
   linkType: hard
 
