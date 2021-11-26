@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Just an API server (revamped)",
   "main": "build/index",
-  "packageManager": "yarn@3.0.2",
+  "packageManager": "yarn@3.1.1",
   "scripts": {
     "lint": "eslint --cache --report-unused-disable-directives --ignore-path .gitignore --ext .ts src/",
     "lint:fix": "eslint --cache --report-unused-disable-directives --ext .ts src/ --fix",
